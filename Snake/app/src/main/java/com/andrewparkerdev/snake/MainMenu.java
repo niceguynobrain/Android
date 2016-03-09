@@ -1,6 +1,7 @@
 package com.andrewparkerdev.snake;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +16,20 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
+/**
+ *
+ */
 public class MainMenu extends AppCompatActivity {
 
+    /**
+     * Put note throughout this class. Follow java convention.
+     * Boring! probably, but could prove to be very useful.
+     * http://www.oracle.com/technetwork/articles/java/index-137868.html
+     */
     private RelativeLayout snakeLayout;
     private Animation compileAnim;
     private AdView adView;
@@ -28,8 +40,18 @@ public class MainMenu extends AppCompatActivity {
     private TextView titleLeft;
     private TextView titleMiddle;
     private TextView titleRight;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient mClient;
 
-
+    /**
+     * Sets the content view a full screen layout and initialises an advertising
+     * banner.
+     *
+     * @param savedInstanceState The instance state of the Activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +62,11 @@ public class MainMenu extends AppCompatActivity {
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
-        if(getActionBar() != null) {
+        if (getActionBar() != null) {
             getActionBar().hide();
         }
 
@@ -58,22 +80,41 @@ public class MainMenu extends AppCompatActivity {
         // using test device.
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
         adView.loadAd(adRequest);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    /**
+     * Starts an animation to begin classic mode.
+     */
     private void initClassic() {
         classicBtn = (ImageView) findViewById(R.id.classic);
         compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_classic_button);
         compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
         compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            /**
+             *
+             *
+             * @param animation 
+             */
             @Override
             public void onAnimationStart(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationEnd(Animation animation) {
                 classicBtn.setImageResource(R.mipmap.classic);
                 classicBtn.setOnClickListener(new View.OnClickListener() {
+                    /**
+                     *
+                     * @param v
+                     */
                     @Override
                     public void onClick(View v) {
                         Intent intentClassic = new Intent(MainMenu.this, ClassicSnake.class);
@@ -83,6 +124,10 @@ public class MainMenu extends AppCompatActivity {
                 });
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -93,17 +138,27 @@ public class MainMenu extends AppCompatActivity {
         classicBtn.startAnimation(compileAnim);
     }
 
-
+    /**
+     *
+     */
     private void initNoWalls() {
         noWallsBtn = (ImageView) findViewById(R.id.no_walls);
         compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_no_button);
         compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
         compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationStart(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationEnd(Animation animation) {
                 noWallsBtn.setImageResource(R.mipmap.no_walls);
@@ -118,6 +173,10 @@ public class MainMenu extends AppCompatActivity {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -127,16 +186,27 @@ public class MainMenu extends AppCompatActivity {
         noWallsBtn.startAnimation(compileAnim);
     }
 
+    /**
+     *
+     */
     private void initBomb() {
         bombBtn = (ImageView) findViewById(R.id.bomb);
         compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_bomb_button);
         compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
         compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationStart(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationEnd(Animation animation) {
                 bombBtn.setImageResource(R.mipmap.bombsnake);
@@ -151,6 +221,10 @@ public class MainMenu extends AppCompatActivity {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -160,6 +234,9 @@ public class MainMenu extends AppCompatActivity {
         bombBtn.startAnimation(compileAnim);
     }
 
+    /**
+     *
+     */
     private void initTitle() {
         titleLeft = (TextView) findViewById(R.id.snake_left);
         titleMiddle = (TextView) findViewById(R.id.snake_middle);
@@ -169,16 +246,28 @@ public class MainMenu extends AppCompatActivity {
         compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.back_anim_for_title_left);
         compileAnim.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
         compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationStart(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationEnd(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -191,16 +280,28 @@ public class MainMenu extends AppCompatActivity {
         compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.back_anim_for_title_middle);
         compileAnim.setDuration(GameSettings.ANIMATION_HIDE_TITLE_DURATION);
         compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationStart(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationEnd(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -234,20 +335,36 @@ public class MainMenu extends AppCompatActivity {
     }
 
     // Settings mode
+
+    /**
+     *
+     */
     private void initSettings() {
         settingsBtn = (ImageView) findViewById(R.id.settings);
         compileAnim = AnimationUtils.loadAnimation(MainMenu.this, R.anim.anim_for_settings_button);
         compileAnim.setDuration(GameSettings.ANIMATION_OPEN_BUTTON_DURATION);
         compileAnim.setAnimationListener(new Animation.AnimationListener() {
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationStart(Animation animation) {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationEnd(Animation animation) {
                 settingsBtn.setImageResource(R.mipmap.settings);
                 settingsBtn.setOnClickListener(new View.OnClickListener() {
+                    /**
+                     *
+                     * @param v
+                     */
                     @Override
                     public void onClick(View v) {
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
@@ -292,6 +409,9 @@ public class MainMenu extends AppCompatActivity {
                         // wait for animations to finish before going to settings class
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
+                            /**
+                             *
+                             */
                             @Override
                             public void run() {
                                 Intent settingsIntent = new Intent(MainMenu.this, Settings.class);
@@ -305,6 +425,10 @@ public class MainMenu extends AppCompatActivity {
 
             }
 
+            /**
+             *
+             * @param animation
+             */
             @Override
             public void onAnimationRepeat(Animation animation) {
 
@@ -312,7 +436,51 @@ public class MainMenu extends AppCompatActivity {
         });
         settingsBtn.setAnimation(compileAnim);
     }
+
+    /**
+     *
+     */
     @Override
     public void onBackPressed() {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "MainMenu Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.andrewparkerdev.snake/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(mClient, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "MainMenu Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.andrewparkerdev.snake/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(mClient, viewAction);
+        mClient.disconnect();
     }
 }
