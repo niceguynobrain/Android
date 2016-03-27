@@ -3,6 +3,7 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,11 +20,39 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
+
+        <activity
+            android:name=".ClassicSnake"
+            android:label="@string/title_activity_classic_snake"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".NoWallsSnake"
+            android:label="@string/title_activity_no_walls_snake"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".BombSnake"
+            android:label="@string/title_activity_bomb_snake"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ClassicScore"
+            android:label="@string/title_activity_classic_score"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

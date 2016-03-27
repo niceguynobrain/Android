@@ -1,7 +1,15 @@
 package com.andrewparkerdev.snake;
 
-/**
- * Created by Andrew Parker on 24/02/2016.
- */
-public class Settings {
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+public class Settings extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+
+    }
+
 }
